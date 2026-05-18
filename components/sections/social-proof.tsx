@@ -58,32 +58,32 @@ const testimonials = [
 // Each photo linked to its reviewer via reviewIndex
 const reviewPhotos = [
   // Priya Sharma — index 0
-  { src: '/reviews/714Q9JLLYLL.jpg', alt: 'Kid drawing enthusiastically with colorful markers', reviewIndex: 0 },
-  { src: '/reviews/71equ5LyNBL.jpg', alt: 'Magnetic letters scattered on whiteboard', reviewIndex: 0 },
-  { src: '/reviews/617mxYO5dXL.jpg', alt: 'Beautiful chalk flower drawn by a child', reviewIndex: 0 },
+  { src: '/reviews/714Q9JLLYLL.webp', alt: 'Kid drawing enthusiastically with colorful markers', reviewIndex: 0 },
+  { src: '/reviews/71equ5LyNBL.webp', alt: 'Magnetic letters scattered on whiteboard', reviewIndex: 0 },
+  { src: '/reviews/617mxYO5dXL.webp', alt: 'Beautiful chalk flower drawn by a child', reviewIndex: 0 },
   // Rahul Mehta — index 1
-  { src: '/reviews/71Y0SO33UPL.jpg', alt: 'Detailed sun and car drawing on whiteboard under Christmas tree', reviewIndex: 1 },
-  { src: '/reviews/71nMaUkexbL.jpg', alt: 'Close-up of sun, flowers and car artwork', reviewIndex: 1 },
-  { src: '/reviews/71-R31VUJYL.jpg', alt: 'Child artwork from side angle', reviewIndex: 1 },
+  { src: '/reviews/71Y0SO33UPL.webp', alt: 'Detailed sun and car drawing on whiteboard under Christmas tree', reviewIndex: 1 },
+  { src: '/reviews/71nMaUkexbL.webp', alt: 'Close-up of sun, flowers and car artwork', reviewIndex: 1 },
+  { src: '/reviews/71-R31VUJYL.webp', alt: 'Child artwork from side angle', reviewIndex: 1 },
   // Ananya K. — index 2
-  { src: '/reviews/71Jgd4M-EXL.jpg', alt: 'Product with full magnetic letter and number set', reviewIndex: 2 },
-  { src: '/reviews/71zORWT5f9L.jpg', alt: 'All alphabet and number tiles arranged on board', reviewIndex: 2 },
-  { src: '/reviews/41JCNT0xGNL.jpg', alt: 'All accessories included in the box', reviewIndex: 2 },
-  { src: '/reviews/31yiDKC0sgL.jpg', alt: 'Magnetic alphabet and number tile sheet', reviewIndex: 2 },
+  { src: '/reviews/71Jgd4M-EXL.webp', alt: 'Product with full magnetic letter and number set', reviewIndex: 2 },
+  { src: '/reviews/71zORWT5f9L.webp', alt: 'All alphabet and number tiles arranged on board', reviewIndex: 2 },
+  { src: '/reviews/41JCNT0xGNL.webp', alt: 'All accessories included in the box', reviewIndex: 2 },
+  { src: '/reviews/31yiDKC0sgL.webp', alt: 'Magnetic alphabet and number tile sheet', reviewIndex: 2 },
   // Vikram Nair — index 3
-  { src: '/reviews/81Bchl3JprL.jpg', alt: 'Baby girl in pink drawing on the whiteboard', reviewIndex: 3 },
-  { src: '/reviews/81adotNhwsL.jpg', alt: 'Toddler in green sweater creating art', reviewIndex: 3 },
-  { src: '/reviews/619I7Db5b2L.jpg', alt: 'Colorful marker artwork by young child', reviewIndex: 3 },
+  { src: '/reviews/81Bchl3JprL.webp', alt: 'Baby girl in pink drawing on the whiteboard', reviewIndex: 3 },
+  { src: '/reviews/81adotNhwsL.webp', alt: 'Toddler in green sweater creating art', reviewIndex: 3 },
+  { src: '/reviews/619I7Db5b2L.webp', alt: 'Colorful marker artwork by young child', reviewIndex: 3 },
   // Deepa Iyer — index 4
-  { src: '/reviews/71iDsX5dEBL.jpg', alt: 'Chalk circle drawings on chalkboard side', reviewIndex: 4 },
-  { src: '/reviews/71LoZGdpaJL.jpg', alt: 'Vibrant colorful chalk art on dark chalkboard', reviewIndex: 4 },
-  { src: '/reviews/71btqzOT-UL.jpg', alt: 'Young child drawing on whiteboard close up', reviewIndex: 4 },
+  { src: '/reviews/71iDsX5dEBL.webp', alt: 'Chalk circle drawings on chalkboard side', reviewIndex: 4 },
+  { src: '/reviews/71LoZGdpaJL.webp', alt: 'Vibrant colorful chalk art on dark chalkboard', reviewIndex: 4 },
+  { src: '/reviews/71btqzOT-UL.webp', alt: 'Young child drawing on whiteboard close up', reviewIndex: 4 },
   // Arun Bhat — index 5
-  { src: '/reviews/31wRHHkVb+L.jpg', alt: 'Have a great day written in chalk', reviewIndex: 5 },
-  { src: '/reviews/61ou5RNWnsL.jpg', alt: 'Letter A drawn neatly in chalk', reviewIndex: 5 },
-  { src: '/reviews/71X2Oh4zfjL.jpg', alt: 'ABCDE and smiley face on chalkboard', reviewIndex: 5 },
-  { src: '/reviews/61EeVoLZaDL.jpg', alt: 'Jasper name and drawing on whiteboard', reviewIndex: 5 },
-  { src: '/reviews/61L-+BJmDtL.jpg', alt: 'Jasper name written on chalkboard', reviewIndex: 5 },
+  { src: '/reviews/31wRHHkVb+L.webp', alt: 'Have a great day written in chalk', reviewIndex: 5 },
+  { src: '/reviews/61ou5RNWnsL.webp', alt: 'Letter A drawn neatly in chalk', reviewIndex: 5 },
+  { src: '/reviews/71X2Oh4zfjL.webp', alt: 'ABCDE and smiley face on chalkboard', reviewIndex: 5 },
+  { src: '/reviews/61EeVoLZaDL.webp', alt: 'Jasper name and drawing on whiteboard', reviewIndex: 5 },
+  { src: '/reviews/61L-+BJmDtL.webp', alt: 'Jasper name written on chalkboard', reviewIndex: 5 },
 ];
 
 const ratingBreakdown = [
