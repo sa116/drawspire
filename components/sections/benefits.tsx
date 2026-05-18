@@ -71,7 +71,7 @@ export function Benefits() {
             💡 The average Indian family spends <span className="text-accent-600">₹200–400/month</span> on art supplies.
           </p>
           <p className="mt-2 text-base text-neutral-600">
-            Drawspire pays for itself in <strong>under 3 months</strong> — and keeps drawing free forever after.
+            Drawspire pays for itself in <strong>a few months</strong> — and keeps drawing free forever after.
           </p>
         </div>
       </div>

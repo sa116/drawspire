@@ -9,7 +9,7 @@ const testimonials = [
     location: 'Mumbai',
     role: 'Mom of 2 (ages 4 & 7)',
     rating: 5,
-    text: 'My 4-year-old drew for 6 straight hours on her first day. No crayons on the floor, no paper to throw away, no fights over "I ruined it." This is the best ₹999 I\'ve ever spent.',
+    text: 'My 4-year-old drew for 6 straight hours on her first day. No crayons on the floor, no paper to throw away, no fights over "I ruined it." This is the best ₹2,499 I\'ve ever spent.',
     highlight: '6 hours of non-stop drawing',
   },
   {
@@ -41,7 +41,7 @@ const testimonials = [
     location: 'Chennai',
     role: 'Mom of a 3-year-old',
     rating: 5,
-    text: 'Was sceptical about ordering online but the 30-day return policy convinced me. Didn\'t need to return it — my daughter has used it every single day for 3 months. Worth every rupee.',
+    text: 'Was sceptical about ordering online but the 7-day replacement guarantee convinced me. Didn\'t need to use it — my daughter has used it every single day for 3 months. Worth every rupee.',
     highlight: 'Used every day for 3 months',
   },
   {
@@ -250,7 +250,7 @@ export function SocialProof() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
-    <section className="overflow-x-clip bg-neutral-50 py-10 sm:py-16">
+    <section id="reviews" className="overflow-x-clip bg-neutral-50 py-10 sm:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Stats banner */}

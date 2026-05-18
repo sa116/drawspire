@@ -28,14 +28,14 @@ export function FinalCTA({ product }: { product?: Product }) {
         </h2>
 
         <p className="mx-auto mt-5 max-w-lg text-lg text-brand-200/80">
-          5,000+ Indian families already said yes. Free shipping, pay on delivery, 30-day money-back guarantee. Zero risk on your part.
+          5,000+ Indian families already said yes. Free shipping, pay on delivery, 7-day replacement guarantee. Zero risk on your part.
         </p>
 
         {/* Risk reversal */}
         <div className="mx-auto mt-6 max-w-sm rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-brand-200/70 backdrop-blur-sm">
           <p className="font-semibold text-white">Our promise to you:</p>
           <p className="mt-1">
-            If your child doesn&apos;t love it, return it within 30 days for a <span className="font-semibold text-white">full refund — no questions asked</span>, no return shipping needed.
+            If your child doesn&apos;t love it or it has any issue, we&apos;ll <span className="font-semibold text-white">replace it within 7 days — no questions asked</span>, no return shipping needed.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export function FinalCTA({ product }: { product?: Product }) {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-brand-300/70">
           <span>🚚 Free shipping</span>
           <span>💳 Pay on delivery</span>
-          <span>🔁 30-day returns</span>
+          <span>🔁 7-day replacement</span>
           <span>📦 Ships in 24 hrs</span>
         </div>
       </div>

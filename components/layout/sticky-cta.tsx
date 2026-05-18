@@ -49,7 +49,7 @@ export function StickyCTA({ product }: { product?: Product }) {
       }`}
     >
       <div className="mb-2 flex items-center justify-between gap-2">
-        <span className="text-xs font-medium text-neutral-500">🛡️ 30-day returns · 📦 Ships in 24 hrs</span>
+        <span className="text-xs font-medium text-neutral-500">🛡️ 7-day replacement · 📦 Ships in 24 hrs</span>
         <span className="shrink-0 rounded-full bg-red-500 px-2 py-0.5 text-[11px] font-bold text-white">50% OFF</span>
       </div>
       {product ? (

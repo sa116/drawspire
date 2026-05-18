@@ -31,14 +31,14 @@ const faqs = [
       'Yes, very easy. The chalkboard side wipes clean with the included felt eraser — the same way a school blackboard works, so even a 3-year-old can do it. The whiteboard side wipes clean with a dry cloth in one stroke. No buttons, no electronics, no fuss.',
   },
   {
-    question: 'What if it breaks? What\'s your return/refund policy?',
+    question: 'What if it breaks? What\'s your replacement policy?',
     answer:
-      '30-day no-questions-asked return policy. If it arrives damaged or breaks within 30 days — for any reason — contact us for a full refund or replacement. We want you to be happy; if something\'s wrong, we\'ll make it right.',
+      '7-day replacement guarantee, no questions asked. If it arrives damaged or has any defect within 7 days — contact us and we\'ll send a replacement immediately. We want you to be happy; if something\'s wrong, we\'ll make it right.',
   },
   {
     question: 'How is this different from an iPad or drawing app?',
     answer:
-      'Three big differences: (1) No screen time — real chalk and markers on a real surface, not a backlit display. (2) No apps, no ads, no distraction — just pure drawing. (3) ₹999 vs ₹20,000+. Unstructured drawing on a physical board builds fine motor skills in a way that no screen can replicate.',
+      'Three big differences: (1) No screen time — real chalk and markers on a real surface, not a backlit display. (2) No apps, no ads, no distraction — just pure drawing. (3) ₹2,499 vs ₹20,000+. Unstructured drawing on a physical board builds fine motor skills in a way that no screen can replicate.',
   },
   {
     question: 'How fast will it arrive?',

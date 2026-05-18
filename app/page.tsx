@@ -12,9 +12,9 @@ import { SocialProof } from "components/sections/social-proof";
 import { getProducts } from "lib/shopify";
 
 export const metadata = {
-  title: "Drawspire — Kids Drawing Board | No-Mess, Reusable, Ages 3+",
+  title: "Drawspire — Double-Sided Kids Drawing Board | Chalk & Whiteboard",
   description:
-    "The no-mess LCD drawing board every kid loves. Reusable 10,000+ times, safe for ages 3+. Free shipping across India. 30-day money-back guarantee.",
+    "The double-sided kids drawing board every child loves. Chalkboard + whiteboard, built-in tray. Safe for ages 3+. Free shipping across India. 7-day replacement guarantee.",
   openGraph: {
     type: "website",
   },
@@ -34,19 +34,19 @@ export default async function HomePage() {
       {product && <ProductJsonLd product={product} />}
       <Hero product={product} />
       <ScrollAnimate>
-        <SocialProof />
+        <PainPoints />
       </ScrollAnimate>
       <ScrollAnimate>
         <ProductShowcase />
       </ScrollAnimate>
       <ScrollAnimate>
-        <Benefits />
-      </ScrollAnimate>
-      <ScrollAnimate>
         <HowItWorks />
       </ScrollAnimate>
       <ScrollAnimate>
-        <PainPoints />
+        <Benefits />
+      </ScrollAnimate>
+      <ScrollAnimate>
+        <SocialProof />
       </ScrollAnimate>
       <ScrollAnimate>
         <FAQ />
