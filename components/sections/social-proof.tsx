@@ -233,7 +233,7 @@ function Lightbox({
               key={i}
               onClick={() => setIdx(i)}
               aria-label={`Go to photo ${i + 1}`}
-              className={`shrink-0 overflow-hidden rounded transition-all duration-150 ${
+              className={`relative shrink-0 overflow-hidden rounded transition-all duration-150 ${
                 i === idx
                   ? 'h-9 w-9 ring-2 ring-brand-500 ring-offset-1'
                   : 'h-7 w-7 opacity-50 hover:opacity-80'
