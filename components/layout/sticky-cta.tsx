@@ -10,19 +10,35 @@ export function StickyCTA({ product }: { product?: Product }) {
   useEffect(() => {
     const heroBtn = document.getElementById('hero-buy-btn');
     if (!heroBtn) {
-      // Fallback to scroll if no hero button (e.g. no product)
       const onScroll = () => setVisible(window.scrollY > 500);
       window.addEventListener('scroll', onScroll, { passive: true });
       return () => window.removeEventListener('scroll', onScroll);
     }
 
-    // Show sticky only when the hero CTA has fully scrolled out of viewport
+    // Both conditions must be true: hero button off-screen AND user has scrolled past it
+    let heroBtnOffScreen = false;
+    let hasScrolled = false;
+    const update = () => setVisible(heroBtnOffScreen && hasScrolled);
+
+    const onScroll = () => {
+      hasScrolled = window.scrollY > 80;
+      update();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry!.isIntersecting),
-      { threshold: 0, rootMargin: '0px' },
+      ([entry]) => {
+        heroBtnOffScreen = !entry!.isIntersecting;
+        update();
+      },
+      { threshold: 0 },
     );
     observer.observe(heroBtn);
-    return () => observer.disconnect();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
