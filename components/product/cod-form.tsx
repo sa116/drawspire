@@ -168,44 +168,49 @@ function CodFormModal({
 
         <div className="px-5 pb-8 pt-4">
           {/* Product summary */}
-          <div className="mb-5 flex items-center gap-3 rounded-xl border border-neutral-100 bg-neutral-50 p-3">
-            {firstImage && (
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-neutral-200 bg-white">
-                <Image src={firstImage.url} alt={firstImage.altText ?? product.title} fill className="object-contain p-1" />
-              </div>
-            )}
-            <div className="flex-1 min-w-0">
-              <p className="truncate text-sm font-semibold text-neutral-900">{product.title}</p>
-              <div className="mt-1 flex items-center gap-2">
-                <span className="text-base font-extrabold text-neutral-900">
-                  <Price amount={totalPrice} currencyCode={currentPrice.currencyCode} />
-                </span>
-                {compareAt && (
-                  <span className="text-sm text-neutral-400 line-through">
-                    <Price amount={compareAt} currencyCode={currentPrice.currencyCode} />
-                  </span>
-                )}
+          <div className="mb-5 rounded-xl border border-neutral-100 bg-neutral-50 p-3">
+            {/* Row 1: image + title + quantity */}
+            <div className="flex items-center gap-3">
+              {firstImage && (
+                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-neutral-200 bg-white">
+                  <Image src={firstImage.url} alt={firstImage.altText ?? product.title} fill className="object-contain p-1" />
+                </div>
+              )}
+              <p className="min-w-0 flex-1 truncate text-sm font-semibold text-neutral-900">{product.title}</p>
+              {/* Quantity */}
+              <div className="flex shrink-0 items-center gap-1 rounded-lg border border-neutral-200 bg-white px-1">
+                <button
+                  type="button"
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  disabled={quantity <= 1}
+                  className="flex h-8 w-8 items-center justify-center rounded font-bold text-neutral-500 transition-colors hover:bg-neutral-100 disabled:opacity-30"
+                >
+                  −
+                </button>
+                <span className="min-w-[1.5rem] text-center text-sm font-bold text-neutral-900">{quantity}</span>
+                <button
+                  type="button"
+                  onClick={() => setQuantity((q) => Math.min(10, q + 1))}
+                  disabled={quantity >= 10}
+                  className="flex h-8 w-8 items-center justify-center rounded font-bold text-neutral-500 transition-colors hover:bg-neutral-100 disabled:opacity-30"
+                >
+                  +
+                </button>
               </div>
             </div>
-            {/* Quantity */}
-            <div className="flex shrink-0 items-center gap-1 rounded-lg border border-neutral-200 bg-white px-1">
-              <button
-                type="button"
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                disabled={quantity <= 1}
-                className="flex h-8 w-8 items-center justify-center rounded font-bold text-neutral-500 transition-colors hover:bg-neutral-100 disabled:opacity-30"
-              >
-                −
-              </button>
-              <span className="min-w-[1.5rem] text-center text-sm font-bold text-neutral-900">{quantity}</span>
-              <button
-                type="button"
-                onClick={() => setQuantity((q) => Math.min(10, q + 1))}
-                disabled={quantity >= 10}
-                className="flex h-8 w-8 items-center justify-center rounded font-bold text-neutral-500 transition-colors hover:bg-neutral-100 disabled:opacity-30"
-              >
-                +
-              </button>
+            {/* Row 2: prices — full width, no competition */}
+            <div className="mt-2 flex items-center gap-2 pl-[68px]">
+              <span className="text-base font-extrabold text-neutral-900">
+                <Price amount={totalPrice} currencyCode={currentPrice.currencyCode} />
+              </span>
+              {compareAt && (
+                <span className="text-sm text-neutral-400 line-through">
+                  <Price amount={compareAt} currencyCode={currentPrice.currencyCode} />
+                </span>
+              )}
+              {compareAt && (
+                <span className="rounded-full bg-red-500 px-2 py-0.5 text-[11px] font-bold text-white">50% OFF</span>
+              )}
             </div>
           </div>
 
@@ -279,7 +284,7 @@ function CodFormModal({
               </svg>
               Secure Order
             </span>
-            <span className="flex items-center gap-1 whitespace-nowrap">🔁 30-Day Returns</span>
+            <span className="flex items-center gap-1 whitespace-nowrap">🔁 7-Day Replacement</span>
             <span className="flex items-center gap-1 whitespace-nowrap">💳 Pay on Delivery</span>
           </div>
         </div>
