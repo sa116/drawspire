@@ -5,6 +5,7 @@ import { StickyCTA } from 'components/layout/sticky-cta';
 import { GeistSans } from 'geist/font/sans';
 import { getCart, getProducts } from 'lib/shopify';
 import { baseUrl } from 'lib/utils';
+import Script from 'next/script';
 import { ReactNode, Suspense } from 'react';
 import { Toaster } from 'sonner';
 import './globals.css';
@@ -51,6 +52,16 @@ export default async function RootLayout({
             <StickyCTA product={product} />
           </Suspense>
         </CartProvider>
+        <Script id="scroll-animate" strategy="afterInteractive">{`
+          (function(){
+            var io=new IntersectionObserver(function(entries){
+              entries.forEach(function(e){
+                if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}
+              });
+            },{threshold:0.1});
+            document.querySelectorAll('[data-animate]').forEach(function(el){io.observe(el);});
+          })();
+        `}</Script>
       </body>
     </html>
   );

@@ -58,6 +58,7 @@ export function HeroSlider({ images }: { images: SliderImage[] }) {
             alt={img.altText}
             fill
             priority={i === 0}
+            loading={i === 0 ? 'eager' : 'lazy'}
             className={`object-cover transition-opacity duration-500 ${i === current ? 'opacity-100' : 'opacity-0'}`}
             sizes="(min-width: 1024px) 50vw, 100vw"
           />

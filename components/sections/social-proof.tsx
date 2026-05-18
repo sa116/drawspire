@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 
 const testimonials = [
   {
@@ -153,10 +154,12 @@ function Lightbox({
       >
         {/* Image */}
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-neutral-900">
-          <img
+          <Image
             src={photo.src}
             alt={photo.alt}
-            className="h-full w-full object-contain"
+            fill
+            className="object-contain"
+            sizes="512px"
           />
 
           {/* Close */}
@@ -236,7 +239,7 @@ function Lightbox({
                   : 'h-7 w-7 opacity-50 hover:opacity-80'
               }`}
             >
-              <img src={p.src} alt="" className="h-full w-full object-cover" />
+              <Image src={p.src} alt="" fill className="object-cover" sizes="36px" />
             </button>
           ))}
         </div>
@@ -318,11 +321,12 @@ export function SocialProof() {
                   onClick={() => setLightboxIndex(i)}
                   className="group relative aspect-square overflow-hidden rounded-xl border border-neutral-200 bg-neutral-100 shadow-sm transition-all duration-200 hover:scale-[1.04] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2"
                 >
-                  <img
+                  <Image
                     src={photo.src}
                     alt={photo.alt}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    loading="lazy"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    sizes="(min-width: 1024px) 14vw, (min-width: 640px) 25vw, 33vw"
                   />
                   {/* Hover overlay */}
                   <div className="absolute inset-0 flex flex-col items-center justify-end bg-gradient-to-t from-black/75 via-black/20 to-transparent p-1.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
@@ -377,7 +381,7 @@ export function SocialProof() {
                           className="group relative h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-neutral-200 transition hover:scale-105 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-500"
                           aria-label={`View photo from ${t.name}`}
                         >
-                          <img src={p.src} alt={p.alt} className="h-full w-full object-cover" loading="lazy" />
+                          <Image src={p.src} alt={p.alt} fill className="object-cover" sizes="48px" />
                           <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/10" />
                         </button>
                       );
