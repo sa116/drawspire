@@ -31,7 +31,7 @@ const painPoints = [
 
 export function PainPoints() {
   return (
-    <section className="relative overflow-hidden bg-neutral-900 py-16 sm:py-24">
+    <section className="relative overflow-hidden bg-neutral-900 py-10 sm:py-16">
       <div className="absolute inset-0 bg-grain opacity-40" />
       <div className="absolute -left-48 top-0 h-96 w-96 rounded-full bg-red-900/20 blur-3xl" />
 

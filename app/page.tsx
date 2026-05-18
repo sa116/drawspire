@@ -8,13 +8,13 @@ import { Hero } from "components/sections/hero";
 import { HowItWorks } from "components/sections/how-it-works";
 import { PainPoints } from "components/sections/pain-points";
 import { ProductShowcase } from "components/sections/product-showcase";
-import { ShoppableReels } from "components/sections/shoppable-reels";
 import { SocialProof } from "components/sections/social-proof";
 import { getProducts } from "lib/shopify";
 
 export const metadata = {
+  title: "Drawspire — Kids Drawing Board | No-Mess, Reusable, Ages 3+",
   description:
-    "Bracelite Breathable Back Support — medical-grade lumbar support for herniated disc, sciatica, and scoliosis relief.",
+    "The no-mess LCD drawing board every kid loves. Reusable 10,000+ times, safe for ages 3+. Free shipping across India. 30-day money-back guarantee.",
   openGraph: {
     type: "website",
   },
@@ -34,12 +34,11 @@ export default async function HomePage() {
       {product && <ProductJsonLd product={product} />}
       <Hero product={product} />
       <ScrollAnimate>
-        <PainPoints />
+        <SocialProof />
       </ScrollAnimate>
       <ScrollAnimate>
         <ProductShowcase />
       </ScrollAnimate>
-      <ShoppableReels />
       <ScrollAnimate>
         <Benefits />
       </ScrollAnimate>
@@ -47,7 +46,7 @@ export default async function HomePage() {
         <HowItWorks />
       </ScrollAnimate>
       <ScrollAnimate>
-        <SocialProof />
+        <PainPoints />
       </ScrollAnimate>
       <ScrollAnimate>
         <FAQ />

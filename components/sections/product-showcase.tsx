@@ -9,7 +9,7 @@ const features = [
 
 export function ProductShowcase() {
   return (
-    <section className="bg-grain relative overflow-hidden py-16 sm:py-24">
+    <section className="bg-grain relative overflow-hidden py-10 sm:py-16">
       <div className="absolute inset-0 bg-gradient-to-b from-white via-brand-50/30 to-white" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

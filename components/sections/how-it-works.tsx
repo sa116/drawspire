@@ -21,7 +21,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-800 to-brand-900 py-16 sm:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-br from-brand-700 via-brand-800 to-brand-900 py-10 sm:py-16">
       <div className="absolute inset-0 bg-grain opacity-30" />
       <div className="absolute -right-48 top-0 h-96 w-96 rounded-full bg-brand-500/10 blur-3xl" />
 

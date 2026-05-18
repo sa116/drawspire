@@ -127,6 +127,9 @@ export type ShopifyProduct = {
     maxVariantPrice: Money;
     minVariantPrice: Money;
   };
+  compareAtPriceRange?: {
+    maxVariantPrice: Money;
+  };
   variants: Connection<ProductVariant>;
   featuredImage: Image;
   images: Connection<Image>;
