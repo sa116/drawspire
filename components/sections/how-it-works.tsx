@@ -1,20 +1,20 @@
 const steps = [
   {
     number: '01',
-    title: 'Pick Up & Draw',
-    description: 'Grab the pressure-sensitive stylus and let your child draw freely on the crystal-clear LCD screen.',
+    title: 'Pick a Side & Draw',
+    description: 'Chalk on the dark side, markers on the white side — let your child pick and draw freely. Supplies stored right in the tray below.',
     emoji: '✏️',
   },
   {
     number: '02',
-    title: 'One-Press Erase',
-    description: 'Press the erase button once — the screen clears instantly. No mess, no fuss, ready in seconds.',
-    emoji: '🔘',
+    title: 'Wipe & Start Fresh',
+    description: 'Wipe the chalkboard with the eraser, or clean the whiteboard with a dry cloth — the board is ready again in seconds.',
+    emoji: '🧹',
   },
   {
     number: '03',
-    title: 'Draw Again!',
-    description: 'Unlimited creativity with zero waste. Take it anywhere — home, car, school, or on the go.',
+    title: 'Flip & Draw Again!',
+    description: 'Two surfaces, endless possibilities. Switch sides for double the fun — unlimited creativity with zero paper waste.',
     emoji: '🎨',
   },
 ];
@@ -34,7 +34,7 @@ export function HowItWorks() {
             Drawing made magically simple
           </h2>
           <p className="mt-4 text-lg text-brand-200/70">
-            No setup. No instructions needed. Kids just pick it up and start creating.
+            No setup. No charging. No instructions needed. Kids just pick up the chalk or marker and start creating.
           </p>
         </div>
 

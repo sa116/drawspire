@@ -17,7 +17,7 @@ const testimonials = [
     location: 'Bangalore',
     role: 'Dad, gifted for birthday',
     rating: 5,
-    text: 'Saved us ₹2,000/month on drawing books and crayons. My son takes it everywhere — school bus, restaurants, family trips. The erase button is genius. He thinks it\'s magic.',
+    text: 'Saved us ₹2,000/month on drawing books and crayons. My son takes it everywhere — school bus, restaurants, family trips. Wiping it clean is so easy, he does it himself. He thinks it\'s magic.',
     highlight: 'Saves ₹2,000/month',
   },
   {
@@ -25,7 +25,7 @@ const testimonials = [
     location: 'Hyderabad',
     role: 'Teacher & Mom',
     rating: 5,
-    text: 'I bought 3 for my classroom. Kids aged 5-8 all love it equally. The pressure-sensitive stylus means even toddlers can draw proper lines. Zero mess, zero fights over who gets what color.',
+    text: 'I bought 3 for my classroom. Kids aged 5-8 all love it equally. The chalk side for art, the whiteboard side for letters — it works for everything. Zero mess compared to paint, zero fights over colours.',
     highlight: 'Bought 3 for her classroom',
   },
   {

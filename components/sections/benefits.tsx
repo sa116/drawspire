@@ -6,8 +6,8 @@ const benefits = [
   },
   {
     icon: '♻️',
-    title: 'Reusable 10,000+ Times',
-    description: 'One press clears the screen. That\'s 10,000 fresh starts before you ever think about replacing it — years of drawing from a single board.',
+    title: 'Draw, Wipe, Repeat',
+    description: 'Wipe the chalkboard, clean the whiteboard — both sides reset in seconds and last for years. No consumables, no replacements, no waste.',
   },
   {
     icon: '💰',

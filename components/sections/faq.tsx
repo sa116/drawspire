@@ -6,39 +6,39 @@ import clsx from 'clsx';
 
 const faqs = [
   {
-    question: 'What age is this suitable for? My toddler is only 2½.',
+    question: 'What age is this suitable for?',
     answer:
-      'We recommend ages 3 and above — at 3, kids have enough motor control to hold the stylus and enjoy drawing. That said, many parents tell us their 2½-year-olds love it too with light supervision. The erase button is the same motion as pressing a lift button, so it\'s very intuitive.',
+      'We recommend ages 3 and above. At 3, kids have enough motor control to hold chalk or a marker and enjoy drawing freely. Many parents tell us their 2½-year-olds love it too with light supervision. There are no small parts and no sharp edges, so it\'s safe for young children.',
   },
   {
-    question: 'How long does the battery last? I don\'t want it dying in a week.',
+    question: 'What exactly comes in the box?',
     answer:
-      'The button cell battery (included) lasts 6–12 months of regular daily use. No cables, no charging, no waiting. When it\'s time to replace, any standard button cell from a local store works — costs about ₹20.',
+      'The board ships with chalk pieces, a dry-erase marker, an eraser, and a cleaning cloth — everything your child needs to start drawing on both sides right away. All supplies are stored in the built-in tray below the board.',
   },
   {
     question: 'Will my kid lose interest after 2 days like with every other toy?',
     answer:
-      'Drawing is fundamentally open-ended — there\'s no game to "finish" or level to beat, so kids come back to it naturally. We hear from parents whose children use it daily for 6+ months. The instant-erase also removes the frustration of "ruining" a drawing, which keeps even perfectionists engaged.',
+      'Drawing is fundamentally open-ended — there\'s no game to "finish" or level to beat, so kids keep coming back naturally. We hear from parents whose children use it daily for 6+ months. Wiping the board clean also removes the frustration of "ruining" a drawing, which keeps even perfectionists engaged.',
   },
   {
-    question: 'Is it actually safe? I\'ve heard some cheap toys from China have toxic materials.',
+    question: 'Is it actually safe? I\'ve heard some cheap toys have toxic materials.',
     answer:
-      'Completely safe. The board is made from non-toxic, BPA-free materials with no sharp edges. The LCD erase uses a tiny, harmless electrical pulse — the same technology in calculators. It meets international toy safety standards. We wouldn\'t sell it if we wouldn\'t give it to our own kids.',
+      'Completely safe. The board is made from non-toxic, BPA-free materials with no sharp edges. The chalk is food-safe grade, and the markers are washable — safe even if kids get them on their hands or clothes. It meets international toy safety standards.',
+  },
+  {
+    question: 'How do you erase? Is it easy for kids?',
+    answer:
+      'Yes, very easy. The chalkboard side wipes clean with the included felt eraser — the same way a school blackboard works, so even a 3-year-old can do it. The whiteboard side wipes clean with a dry cloth in one stroke. No buttons, no electronics, no fuss.',
   },
   {
     question: 'What if it breaks? What\'s your return/refund policy?',
     answer:
-      '30-day no-questions-asked return policy. If it breaks within 30 days of delivery — for any reason — contact us for a full refund or replacement. After 30 days, defects are covered under our quality guarantee. We want you to be happy; if something\'s wrong, we\'ll make it right.',
+      '30-day no-questions-asked return policy. If it arrives damaged or breaks within 30 days — for any reason — contact us for a full refund or replacement. We want you to be happy; if something\'s wrong, we\'ll make it right.',
   },
   {
-    question: 'How is this different from an iPad or drawing tablet?',
+    question: 'How is this different from an iPad or drawing app?',
     answer:
-      'Three big differences: (1) No screen time — it\'s not a backlit screen emitting blue light. (2) No apps, no ads, no distraction — just drawing. (3) ₹999 vs ₹20,000+. We\'re not saying iPads are bad — we\'re saying that unstructured drawing is a completely different (and developmentally valuable) activity, and this is the best tool for it.',
-  },
-  {
-    question: 'Can I order multiple for my classroom or as gifts?',
-    answer:
-      'Absolutely. Use the quantity selector on the order form. Many teachers order 5–10 at a time. For bulk orders (10+), reach out to us directly for pricing — we\'re happy to help.',
+      'Three big differences: (1) No screen time — real chalk and markers on a real surface, not a backlit display. (2) No apps, no ads, no distraction — just pure drawing. (3) ₹999 vs ₹20,000+. Unstructured drawing on a physical board builds fine motor skills in a way that no screen can replicate.',
   },
   {
     question: 'How fast will it arrive?',

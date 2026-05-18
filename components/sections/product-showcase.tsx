@@ -1,10 +1,10 @@
 const features = [
-  { label: 'LCD Screen Technology', icon: '📱' },
-  { label: 'Pressure-Sensitive Stylus', icon: '✏️' },
-  { label: 'One-Button Erase', icon: '🔘' },
-  { label: 'Ultra Lightweight', icon: '🪶' },
-  { label: 'Non-Toxic & BPA-Free', icon: '🌿' },
-  { label: 'Portable & Travel-Ready', icon: '🎒' },
+  { label: 'Double-Sided Board', icon: '🔄' },
+  { label: 'Chalkboard Side', icon: '🖤' },
+  { label: 'Whiteboard Side', icon: '⬜' },
+  { label: 'Built-In Storage Tray', icon: '🪣' },
+  { label: 'Non-Toxic & Safe', icon: '🌿' },
+  { label: 'Sturdy Wooden Frame', icon: '🪵' },
 ];
 
 export function ProductShowcase() {
@@ -46,8 +46,7 @@ export function ProductShowcase() {
               <div>
                 <p className="font-bold text-neutral-900">Loved by child development experts</p>
                 <p className="mt-1 text-sm text-neutral-500">
-                  Open-ended drawing play is proven to develop fine motor skills, hand-eye coordination,
-                  and creative thinking in children aged 3 and above.
+                  Real chalk and markers on a real board — open-ended drawing play is proven to develop fine motor skills, hand-eye coordination, and creative thinking in children aged 3 and above.
                 </p>
               </div>
             </div>

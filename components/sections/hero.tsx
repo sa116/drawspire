@@ -58,10 +58,10 @@ export function Hero({ product }: { product?: Product }) {
                 Safe for Ages 3+
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
-                🎨 No-Mess Guaranteed
+                🖊️ Chalk + Whiteboard
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
-                ♻️ Reusable 10,000+ Times
+                🪵 Built-In Storage Tray
               </span>
             </div>
 
@@ -80,7 +80,7 @@ export function Hero({ product }: { product?: Product }) {
             </h1>
 
             <p className="mb-4 text-base leading-relaxed text-neutral-500 sm:text-[1.05rem]">
-              The mess-free drawing board loved by 5,000+ Indian families. Draw, erase with one press, draw again — unlimited creativity with zero cleanup. Save ₹2,400/year on paper and art supplies.
+              The double-sided drawing board loved by 5,000+ Indian families. Chalk on one side, whiteboard on the other — wipe clean and start again, endlessly. Comes with a built-in tray for chalk, markers & eraser. Save ₹2,400/year on paper and art supplies.
             </p>
 
             <Stars />
