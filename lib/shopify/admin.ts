@@ -141,6 +141,7 @@ export async function createCodOrder({
   city,
   province,
   zip,
+  discount = 0,
 }: {
   variantId: string;
   quantity: number;
@@ -152,6 +153,7 @@ export async function createCodOrder({
   city: string;
   province: string;
   zip: string;
+  discount?: number;
 }): Promise<{ orderId: string; orderName: string; totalPrice: string }> {
   const draftResult = await shopifyAdminFetch<{
     draftOrderCreate: {
@@ -177,6 +179,13 @@ export async function createCodOrder({
         phone,
         tags: ["COD"],
         note: "Cash on Delivery order",
+        ...(discount > 0 && {
+          appliedDiscount: {
+            value: String(discount),
+            valueType: "FIXED_AMOUNT",
+            title: "Loyalty Discount",
+          },
+        }),
       },
     },
   });

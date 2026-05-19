@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window { Razorpay: any; }
 }
 
-const UPSELL_DISCOUNT = 200;
+const UPSELL_DISCOUNT_PCT = 10;
+const TIMER_SECONDS = 5 * 60;
 
 function loadRazorpayScript(): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -49,10 +50,18 @@ export function PrepaidUpsell({
   const [loading, setLoading]   = useState(false);
   const [success, setSuccess]   = useState(false);
   const [error, setError]       = useState("");
+  const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
   const initiated               = useRef(false);
 
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const t = setTimeout(() => setTimeLeft((s) => s - 1), 1000);
+    return () => clearTimeout(t);
+  }, [timeLeft]);
+
   const codAmount    = parseFloat(codPrice);
-  const onlinePrice  = Math.max(0, codAmount - UPSELL_DISCOUNT);
+  const onlinePrice  = Math.round(codAmount * (1 - UPSELL_DISCOUNT_PCT / 100));
+  const saving       = Math.round(codAmount * UPSELL_DISCOUNT_PCT / 100);
   const fmtCod       = codAmount.toFixed(0);
   const fmtOnline    = onlinePrice.toFixed(0);
 
@@ -83,7 +92,7 @@ export function PrepaidUpsell({
         amount: orderData.amount,
         currency: orderData.currency,
         name: "Drawspire",
-        description: "Save ₹200 — Pay online now",
+        description: `Save ${UPSELL_DISCOUNT_PCT}% — Pay online now`,
         order_id: orderData.razorpayOrderId,
         prefill: {
           name: `${firstName} ${lastName}`.trim() || undefined,
@@ -124,72 +133,81 @@ export function PrepaidUpsell({
     }
   };
 
+  const mins = String(Math.floor(timeLeft / 60)).padStart(2, "0");
+  const secs = String(timeLeft % 60).padStart(2, "0");
+  const expired = timeLeft <= 0;
+
   if (success) {
     return (
-      <div className="mt-6 overflow-hidden rounded-2xl border-2 border-green-500 bg-white shadow-xl">
-        <div className="bg-gradient-to-r from-green-600 to-green-500 px-4 py-3 text-center">
-          <p className="text-sm font-bold text-white">✅ Payment Successful!</p>
+      <div className="mt-6 overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-md">
+        <div className="bg-brand-600 px-4 py-3 text-center">
+          <p className="text-sm font-bold text-white">Payment Successful!</p>
         </div>
         <div className="p-5 text-center">
-          <p className="text-2xl font-black text-green-700">₹{fmtOnline} Paid</p>
-          <p className="mt-2 text-sm text-neutral-600">
-            You saved ₹{UPSELL_DISCOUNT}! Your order is confirmed and will arrive in 4–7 business days.
+          <p className="text-2xl font-black text-brand-700">₹{fmtOnline} Paid</p>
+          <p className="mt-2 text-sm text-neutral-500">
+            You saved ₹{saving} by paying online. Enjoy your Drawspire!
           </p>
         </div>
       </div>
     );
   }
 
+  if (expired) return null;
+
   return (
-    <div className="mt-6 overflow-hidden rounded-2xl border-2 border-green-500 bg-white shadow-xl">
-      {/* Urgency banner */}
-      <div className="bg-gradient-to-r from-green-600 to-green-500 px-4 py-2.5 text-center">
-        <p className="text-sm font-bold text-white">🔥 LIMITED TIME — Expires in 10 minutes</p>
+    <div className="mt-6 overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-md">
+      {/* Soft header */}
+      <div className="bg-brand-600 px-4 py-2.5 text-center">
+        <p className="text-sm font-semibold text-white">
+          One-time offer — expires in{" "}
+          <span className="font-black tabular-nums">{mins}:{secs}</span>
+        </p>
       </div>
 
       <div className="p-5">
         <div className="mb-4 text-center">
-          <p className="text-xs font-bold uppercase tracking-widest text-green-700">Exclusive offer for you</p>
-          <h2 className="mt-1 text-2xl font-black text-neutral-900">
-            Pay Online — Save ₹{UPSELL_DISCOUNT}!
+          <p className="text-xs font-semibold uppercase tracking-widest text-brand-500">While your order is processing</p>
+          <h2 className="mt-1 text-xl font-black text-neutral-900">
+            Switch to Online — Save {UPSELL_DISCOUNT_PCT}%
           </h2>
-          <p className="mt-2 text-sm text-neutral-600">
-            Switch to online payment and get{" "}
-            <span className="font-bold text-green-700">flat ₹{UPSELL_DISCOUNT} off</span>.
-            This offer won&apos;t come again!
+          <p className="mt-1.5 text-sm text-neutral-500">
+            Pay now and get{" "}
+            <span className="font-semibold text-brand-600">{UPSELL_DISCOUNT_PCT}% off</span>{" "}
+            your order total. No extra steps.
           </p>
         </div>
 
         {/* Price breakdown */}
-        <div className="mb-5 rounded-xl bg-green-50 p-4">
+        <div className="mb-5 rounded-xl bg-brand-50 p-4">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-neutral-600">COD Price</span>
-            <span className="font-semibold text-neutral-500 line-through">₹{fmtCod}</span>
+            <span className="text-neutral-500">COD Price</span>
+            <span className="font-medium text-neutral-400 line-through">₹{fmtCod}</span>
           </div>
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-neutral-600">Online Discount</span>
-            <span className="font-bold text-green-600">−₹{UPSELL_DISCOUNT}</span>
+          <div className="flex items-center justify-between text-sm mt-1">
+            <span className="text-neutral-500">Online Discount ({UPSELL_DISCOUNT_PCT}% off)</span>
+            <span className="font-semibold text-brand-600">−₹{saving}</span>
           </div>
-          <div className="mt-2 flex items-center justify-between border-t border-green-200 pt-2">
+          <div className="mt-3 flex items-center justify-between border-t border-brand-100 pt-3">
             <span className="font-bold text-neutral-900">You Pay</span>
-            <span className="text-2xl font-black text-green-700">₹{fmtOnline}</span>
+            <span className="text-2xl font-black text-brand-700">₹{fmtOnline}</span>
           </div>
         </div>
 
         <button
           onClick={handlePayOnline}
           disabled={loading}
-          className="w-full rounded-xl bg-green-600 py-4 text-lg font-extrabold text-white shadow-lg transition-all hover:bg-green-700 hover:shadow-xl disabled:opacity-60"
+          className="w-full rounded-xl bg-brand-600 py-3.5 text-base font-bold text-white shadow-md transition-all hover:bg-brand-700 disabled:opacity-60"
         >
-          {loading ? "Opening payment…" : `Pay ₹${fmtOnline} Online — Save ₹${UPSELL_DISCOUNT}`}
+          {loading ? "Opening payment…" : `Pay ₹${fmtOnline} Online — Save ${UPSELL_DISCOUNT_PCT}%`}
         </button>
 
         {error && <p className="mt-2 text-center text-sm text-red-600">{error}</p>}
 
-        <div className="mt-4 flex items-center justify-center gap-4 text-[11px] font-medium text-neutral-400">
-          <span>🔒 Secure Payment</span>
-          <span>⚡ Instant Confirmation</span>
+        <div className="mt-4 flex items-center justify-center gap-4 text-[11px] text-neutral-400">
+          <span>🔒 Secure</span>
           <span>💳 UPI / Card / NetBanking</span>
+          <span>⚡ Instant</span>
         </div>
       </div>
     </div>

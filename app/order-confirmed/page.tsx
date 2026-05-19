@@ -31,7 +31,19 @@ export default async function OrderConfirmedPage(props: { searchParams: Promise<
             </p>
           </div>
 
-          {/* Upsell */}
+          {/* Info card — shown first so customer feels reassured */}
+          <div className="mt-6 rounded-2xl border border-neutral-200 bg-white p-6 text-center shadow-sm">
+            <p className="text-2xl">🎨</p>
+            <h2 className="mt-2 text-lg font-bold text-neutral-900">Your Drawspire is on its way!</h2>
+            <p className="mt-1 text-sm text-neutral-500">
+              Expected delivery in 4–7 business days. Free shipping included.
+            </p>
+            <a href="/" className="mt-4 inline-block rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">
+              Back to Home
+            </a>
+          </div>
+
+          {/* Upsell — appears below, feels like a bonus not a pitch */}
           {sp.vid && (
             <PrepaidUpsell
               orderId={sp.oid ?? ""}
@@ -48,18 +60,6 @@ export default async function OrderConfirmedPage(props: { searchParams: Promise<
               zip={sp.zip ?? ""}
             />
           )}
-
-          {/* Info card */}
-          <div className="mt-6 rounded-2xl border border-neutral-200 bg-white p-6 text-center shadow-sm">
-            <p className="text-2xl">🎨</p>
-            <h2 className="mt-2 text-lg font-bold text-neutral-900">Your Drawspire is on its way!</h2>
-            <p className="mt-1 text-sm text-neutral-500">
-              Expected delivery in 4–7 business days. Free shipping included.
-            </p>
-            <a href="/" className="mt-4 inline-block rounded-full bg-brand-600 px-6 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">
-              Back to Home
-            </a>
-          </div>
 
         </div>
       </div>

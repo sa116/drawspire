@@ -32,7 +32,7 @@ export default async function PaymentSuccessPage(props: {
           <div className="mb-8 space-y-3 rounded-xl border border-green-200 bg-green-50 p-5 text-left text-sm">
             {[
               "Payment received successfully",
-              "You saved ₹200 with online payment",
+              "You saved 5% with online payment",
               "Order confirmed & being processed",
               "Delivery in 4–7 business days",
             ].map((line) => (

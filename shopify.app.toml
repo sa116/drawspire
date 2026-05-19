@@ -1,0 +1,19 @@
+name = "Drawspire"
+client_id = "10201321f6535dac3cc990def5124f40"
+application_url = "https://drawspire.vercel.app"
+embedded = false
+
+[access_scopes]
+scopes = "read_products,write_orders,read_orders,write_draft_orders,read_draft_orders"
+
+[auth]
+redirect_urls = [
+  "https://drawspire.vercel.app",
+  "http://localhost:3000"
+]
+
+[webhooks]
+api_version = "2023-01"
+
+[pos]
+embedded = false

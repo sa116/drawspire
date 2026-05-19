@@ -106,7 +106,7 @@ export async function createCartAndSetCookie() {
   (await cookies()).set("cartId", cart.id!);
 }
 
-const PREPAID_DISCOUNT = 200;
+const PREPAID_DISCOUNT_PCT = 5;
 
 export async function checkoutWithForm(
   prevState: any,
@@ -115,6 +115,7 @@ export async function checkoutWithForm(
   const variantId = formData.get("variantId") as string;
   const quantity = Math.max(1, parseInt((formData.get("quantity") as string) || "1", 10));
   const flow = formData.get("flow") as "cod" | "prepaid";
+  const extraDiscount = Math.max(0, parseFloat((formData.get("extraDiscount") as string) || "0"));
 
   if (!variantId) {
     return "Please select a variant";
@@ -125,14 +126,16 @@ export async function checkoutWithForm(
   const email = (formData.get("email") as string) || "";
   const firstName = formData.get("firstName") as string;
   const lastName = formData.get("lastName") as string;
-  const address = formData.get("address") as string;
+  const addressLine1 = formData.get("address") as string;
+  const landmark = (formData.get("landmark") as string) || "";
+  const address = landmark ? `${addressLine1}, ${landmark}` : addressLine1;
   const city = formData.get("city") as string;
   const province = formData.get("state") as string;
   const zip = formData.get("pincode") as string;
 
   if (flow === "prepaid") {
     const unitPrice = parseFloat((formData.get("unitPrice") as string) || "0");
-    const prepaidAmount = Math.max(0, unitPrice * quantity - PREPAID_DISCOUNT).toFixed(2);
+    const prepaidAmount = (Math.max(0, unitPrice * quantity - extraDiscount) * (1 - PREPAID_DISCOUNT_PCT / 100)).toFixed(2);
     const params = new URLSearchParams({
       amount: prepaidAmount,
       vid: variantId,
@@ -162,6 +165,7 @@ export async function checkoutWithForm(
         city,
         province,
         zip,
+        ...(extraDiscount > 0 && { discount: extraDiscount }),
       });
       const params = new URLSearchParams({
         order: orderName,
