@@ -9,9 +9,12 @@ const adminEndpoint = domain
 const clientId = process.env.SHOPIFY_CLIENT_ID!;
 const clientSecret = process.env.SHOPIFY_CLIENT_SECRET!;
 
-// Cache token in memory — refreshed daily at 2:30 AM IST (21:00 UTC)
+// Token cache — refreshed daily at 2:30 AM IST (21:00 UTC)
+// If refresh fails, old token is kept as fallback (Shopify tokens last 24h)
+// so a failed refresh at 2:30 AM still leaves 18+ hours of buffer.
 let cachedToken: string | null = null;
 let tokenExpiresAt = 0;
+let retryAt = 0;
 
 function nextRefreshTime(): number {
   // 2:30 AM IST = 21:00 UTC
@@ -24,9 +27,7 @@ function nextRefreshTime(): number {
   return target.getTime();
 }
 
-async function getAdminToken(): Promise<string> {
-  if (cachedToken && Date.now() < tokenExpiresAt) return cachedToken;
-
+async function fetchFreshToken(): Promise<string> {
   const res = await fetch(`${domain}/admin/oauth/access_token`, {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -36,12 +37,31 @@ async function getAdminToken(): Promise<string> {
       grant_type: "client_credentials",
     }),
   });
-
   const data = await res.json();
-  if (!data.access_token) throw new Error("Failed to get admin token: " + JSON.stringify(data));
+  if (!data.access_token) throw new Error("No access_token in response: " + JSON.stringify(data));
+  return data.access_token;
+}
 
-  cachedToken = data.access_token;
-  tokenExpiresAt = nextRefreshTime();
+async function getAdminToken(): Promise<string> {
+  const now = Date.now();
+
+  // Still within scheduled window — return cached token
+  if (cachedToken && now < tokenExpiresAt) return cachedToken;
+
+  try {
+    cachedToken = await fetchFreshToken();
+    tokenExpiresAt = nextRefreshTime();
+    retryAt = 0;
+  } catch (err) {
+    console.error("[getAdminToken] Refresh failed, keeping old token:", err);
+    if (cachedToken) {
+      // Keep old token; retry in 30 minutes
+      tokenExpiresAt = now + 30 * 60 * 1000;
+      return cachedToken;
+    }
+    throw err; // No cached token at all — first-ever fetch failed
+  }
+
   return cachedToken!;
 }
 

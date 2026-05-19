@@ -9,6 +9,8 @@ import { useSearchParams } from "next/navigation";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 
+const PREPAID_DISCOUNT = 200;
+
 const INDIAN_STATES = [
   "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa",
   "Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala",
@@ -19,15 +21,17 @@ const INDIAN_STATES = [
   "Lakshadweep","Andaman and Nicobar Islands",
 ];
 
-function SubmitButton({
+function SubmitButtons({
   availableForSale,
   selectedVariantId,
   price,
+  prepaidPrice,
   currencyCode,
 }: {
   availableForSale: boolean;
   selectedVariantId: string | undefined;
   price: string;
+  prepaidPrice: string;
   currencyCode: string;
 }) {
   const { pending } = useFormStatus();
@@ -48,42 +52,78 @@ function SubmitButton({
   }
 
   return (
-    <button
-      type="submit"
-      name="flow"
-      value="cod"
-      disabled={pending}
-      className={clsx(
-        "relative w-full overflow-hidden rounded-xl py-4 text-base font-extrabold text-white transition-all",
-        pending
-          ? "bg-accent-400 opacity-70"
-          : "bg-gradient-to-r from-accent-600 to-accent-500 shadow-lg shadow-accent-500/30 hover:shadow-accent-500/50 hover:brightness-105 active:scale-[0.99]",
-      )}
-    >
-      {pending ? (
-        <span className="flex items-center justify-center gap-2">
-          <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-          </svg>
-          Placing your order…
-        </span>
-      ) : (
-        <span className="flex flex-col items-center justify-center gap-0.5">
-          <span className="flex items-center gap-2 text-base">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 shrink-0">
-              <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
-              <path fillRule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 16.125V4.875ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clipRule="evenodd" />
-              <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
+    <div className="space-y-3">
+      {/* Prepaid — Pay Online button */}
+      <button
+        type="submit"
+        name="flow"
+        value="prepaid"
+        disabled={pending}
+        className={clsx(
+          "relative w-full overflow-hidden rounded-xl py-4 text-base font-extrabold text-white transition-all",
+          pending
+            ? "bg-green-400 opacity-70"
+            : "bg-gradient-to-r from-green-700 to-green-500 shadow-lg shadow-green-500/30 hover:shadow-green-500/50 hover:brightness-105 active:scale-[0.99]",
+        )}
+      >
+        {pending ? (
+          <span className="flex items-center justify-center gap-2">
+            <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
             </svg>
-            Confirm Order — Pay on Delivery
+            Processing…
           </span>
-          <span className="text-sm font-medium opacity-90">
-            Total: <Price amount={price} currencyCode={currencyCode} /> · Free Shipping
+        ) : (
+          <span className="flex flex-col items-center justify-center gap-0.5">
+            <span className="flex items-center gap-2 text-base">
+              💳 Pay Online — Save ₹{PREPAID_DISCOUNT}
+            </span>
+            <span className="text-sm font-medium opacity-90">
+              Pay <Price amount={prepaidPrice} currencyCode={currencyCode} /> now · Free Shipping
+            </span>
           </span>
-        </span>
-      )}
-    </button>
+        )}
+      </button>
+
+      {/* COD button */}
+      <button
+        type="submit"
+        name="flow"
+        value="cod"
+        disabled={pending}
+        className={clsx(
+          "relative w-full overflow-hidden rounded-xl py-4 text-base font-extrabold text-white transition-all",
+          pending
+            ? "bg-accent-400 opacity-70"
+            : "bg-gradient-to-r from-accent-600 to-accent-500 shadow-lg shadow-accent-500/30 hover:shadow-accent-500/50 hover:brightness-105 active:scale-[0.99]",
+        )}
+      >
+        {pending ? (
+          <span className="flex items-center justify-center gap-2">
+            <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+            Placing your order…
+          </span>
+        ) : (
+          <span className="flex flex-col items-center justify-center gap-0.5">
+            <span className="flex items-center gap-2 text-base">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 shrink-0">
+                <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
+                <path fillRule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 16.125V4.875ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clipRule="evenodd" />
+                <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
+              </svg>
+              Confirm Order — Pay on Delivery
+            </span>
+            <span className="text-sm font-medium opacity-90">
+              Total: <Price amount={price} currencyCode={currencyCode} /> · Free Shipping
+            </span>
+          </span>
+        )}
+      </button>
+    </div>
   );
 }
 
@@ -112,6 +152,7 @@ function CodFormModal({
   const currentPrice = variant?.price ?? product.priceRange.maxVariantPrice;
   const unitPrice = parseFloat(currentPrice.amount);
   const totalPrice = (unitPrice * quantity).toFixed(2);
+  const prepaidPrice = Math.max(0, unitPrice * quantity - PREPAID_DISCOUNT).toFixed(2);
   const compareAt = product.compareAtPriceRange?.maxVariantPrice?.amount
     ? (parseFloat(product.compareAtPriceRange.maxVariantPrice.amount) * quantity).toFixed(2)
     : null;
@@ -228,6 +269,7 @@ function CodFormModal({
           <form action={formAction}>
             <input type="hidden" name="variantId" value={selectedVariantId ?? ""} />
             <input type="hidden" name="quantity" value={quantity} />
+            <input type="hidden" name="unitPrice" value={unitPrice.toFixed(2)} />
 
             <div className="space-y-3">
               <FormField name="phone" label="Mobile Number" type="tel" placeholder="10-digit mobile number" required pattern="[6-9]\d{9}" maxLength={10} />
@@ -263,10 +305,11 @@ function CodFormModal({
             </div>
 
             <div className="mt-5">
-              <SubmitButton
+              <SubmitButtons
                 availableForSale={availableForSale}
                 selectedVariantId={selectedVariantId}
                 price={totalPrice}
+                prepaidPrice={prepaidPrice}
                 currencyCode={currentPrice.currencyCode}
               />
             </div>

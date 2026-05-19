@@ -106,13 +106,15 @@ export async function createCartAndSetCookie() {
   (await cookies()).set("cartId", cart.id!);
 }
 
+const PREPAID_DISCOUNT = 200;
+
 export async function checkoutWithForm(
   prevState: any,
   formData: FormData
 ) {
   const variantId = formData.get("variantId") as string;
   const quantity = Math.max(1, parseInt((formData.get("quantity") as string) || "1", 10));
-  const flow = formData.get("flow") as "cod";
+  const flow = formData.get("flow") as "cod" | "prepaid";
 
   if (!variantId) {
     return "Please select a variant";
@@ -127,6 +129,25 @@ export async function checkoutWithForm(
   const city = formData.get("city") as string;
   const province = formData.get("state") as string;
   const zip = formData.get("pincode") as string;
+
+  if (flow === "prepaid") {
+    const unitPrice = parseFloat((formData.get("unitPrice") as string) || "0");
+    const prepaidAmount = Math.max(0, unitPrice * quantity - PREPAID_DISCOUNT).toFixed(2);
+    const params = new URLSearchParams({
+      amount: prepaidAmount,
+      vid: variantId,
+      qty: String(quantity),
+      fn: firstName,
+      ln: lastName ?? "",
+      ph: rawPhone,
+      addr: address,
+      city,
+      st: province,
+      zip,
+      ...(email && { em: email }),
+    });
+    redirect(`/pay-online?${params.toString()}`);
+  }
 
   if (flow === "cod") {
     try {
