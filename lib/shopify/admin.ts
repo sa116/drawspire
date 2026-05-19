@@ -9,9 +9,20 @@ const adminEndpoint = domain
 const clientId = process.env.SHOPIFY_CLIENT_ID!;
 const clientSecret = process.env.SHOPIFY_CLIENT_SECRET!;
 
-// Cache token in memory — refreshed automatically when it expires
+// Cache token in memory — refreshed daily at 2:30 AM IST (21:00 UTC)
 let cachedToken: string | null = null;
 let tokenExpiresAt = 0;
+
+function nextRefreshTime(): number {
+  // 2:30 AM IST = 21:00 UTC
+  const now = new Date();
+  const target = new Date(now);
+  target.setUTCHours(21, 0, 0, 0);
+  if (target.getTime() <= now.getTime()) {
+    target.setUTCDate(target.getUTCDate() + 1);
+  }
+  return target.getTime();
+}
 
 async function getAdminToken(): Promise<string> {
   if (cachedToken && Date.now() < tokenExpiresAt) return cachedToken;
@@ -30,8 +41,7 @@ async function getAdminToken(): Promise<string> {
   if (!data.access_token) throw new Error("Failed to get admin token: " + JSON.stringify(data));
 
   cachedToken = data.access_token;
-  // Refresh 5 minutes before expiry
-  tokenExpiresAt = Date.now() + (data.expires_in - 300) * 1000;
+  tokenExpiresAt = nextRefreshTime();
   return cachedToken!;
 }
 
