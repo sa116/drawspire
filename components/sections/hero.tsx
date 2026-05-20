@@ -9,12 +9,9 @@ import { HeroStars } from './hero-stars';
 function StockBadge() {
   return (
     <div className="flex items-center gap-2 rounded-lg border border-orange-100 bg-orange-50 px-3 py-2">
-      <span className="relative flex h-2 w-2 shrink-0">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
-      </span>
+      <span className="text-base">📦</span>
       <span className="text-xs font-semibold text-orange-700">
-        Only <strong>47 left</strong> in stock — 127 sold today
+        350+ families ordered this week
       </span>
     </div>
   );
@@ -65,7 +62,7 @@ export function Hero({ product }: { product?: Product }) {
             </h1>
 
             <p className="mb-4 text-base leading-relaxed text-neutral-500 sm:text-[1.05rem]">
-              The double-sided drawing board loved by 5,000+ Indian families. Chalk on one side, whiteboard on the other — wipe clean and start again, endlessly. Comes with a built-in tray for chalk, markers & eraser. Save ₹2,400/year on paper and art supplies.
+              The double-sided drawing board loved by 522+ Indian families. Chalk on one side, whiteboard on the other. Wipe clean and start again, endlessly. Comes with a built-in tray for chalk, markers and eraser. Save ₹3,600/year on art supplies.
             </p>
 
             <HeroStars />
@@ -99,8 +96,14 @@ export function Hero({ product }: { product?: Product }) {
                 {/* Variant + CTA */}
                 <Suspense fallback={null}>
                   <VariantSelector options={product.options} variants={product.variants} />
-                  <div id="hero-buy-btn">
+                  <div id="hero-buy-btn" className="space-y-2">
                     <BuyNowWithCodModal product={product} />
+                    <div className="flex items-center gap-3">
+                      <div className="h-px flex-1 bg-neutral-200" />
+                      <span className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400">or save more</span>
+                      <div className="h-px flex-1 bg-neutral-200" />
+                    </div>
+                    <BuyNowWithCodModal product={product} prepaidOnly />
                   </div>
                 </Suspense>
 
@@ -108,7 +111,7 @@ export function Hero({ product }: { product?: Product }) {
                 <div className="grid grid-cols-3 divide-x divide-neutral-100 rounded-xl border border-neutral-100 bg-neutral-50">
                   {[
                     { icon: '🚚', label: 'Free Shipping' },
-                    { icon: '🔁', label: '7-Day Replacement' },
+                    { icon: '🔁', label: '7-Day Replacement Guaranteed' },
                     { icon: '💳', label: 'Pay on Delivery' },
                   ].map((b) => (
                     <div key={b.label} className="flex flex-col items-center gap-1 px-2 py-3 text-center">
