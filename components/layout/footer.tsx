@@ -76,6 +76,10 @@ export default async function Footer() {
           <p>
             &copy; {copyrightDate} {copyrightName}. All rights reserved.
           </p>
+          <p className="mt-2">
+            Powered by{' '}
+            <span className="font-semibold text-neutral-900">Sudopers</span>
+          </p>
         </div>
       </div>
     </footer>
